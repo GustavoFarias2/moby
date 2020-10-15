@@ -9,16 +9,18 @@ import {
   Form,
   Typography,
   Input,
-  Checkbox,
   Button
 } from "antd";
-
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import {
+  UserOutlined,
+  LockOutlined,
+  MailOutlined
+} from '@ant-design/icons';
 
 const { Title } = Typography;
 const { Item } = Form;
 
-const Login: React.FC = () => {
+const Register: React.FC = () => {
 
   return (
     <Row align="middle" justify="center" style={{ height: "100%", backgroundColor: "Background" }}>
@@ -27,13 +29,13 @@ const Login: React.FC = () => {
         <Card style={{ padding: "0 50px" }}>
 
           <Form
-            name="login_form"
+            name="register_form"
             initialValues={{ remember: true }}
             onFinish={(v) => console.log(v)}
           >
 
             <Title level={3} style={{ marginTop: 20, marginBottom: 30 }}>
-              Bem vindo ao Moby
+              Criar uma conta!
             </Title>
 
             <Item
@@ -46,8 +48,18 @@ const Login: React.FC = () => {
             </Item>
 
             <Item
+              name="email"
+              rules={[{ required: true, message: "Insira seu email para continuar" }]}
+            >
+              <Input prefix={<MailOutlined style={{ marginRight: 5 }} />}
+                placeholder="Email"
+                type="email"
+              />
+            </Item>
+
+            <Item
               name="password"
-              rules={[{ required: true, message: 'Please input your Password!' }]}
+              rules={[{ required: true, message: "Insira sua senha para continuar!" }]}
             >
               <Input
                 prefix={<LockOutlined style={{ marginRight: 5 }} />}
@@ -56,21 +68,23 @@ const Login: React.FC = () => {
               />
             </Item>
 
-            <Item name="remember" valuePropName="checked" style={{ marginBottom: 5 }}>
-              <Checkbox>Lembrar me</Checkbox>
+            <Item
+              name="password_confirmation"
+              rules={[{ required: true, message: "Confirme sua senha para continuar!" }]}
+            >
+              <Input
+                prefix={<LockOutlined style={{ marginRight: 5 }} />}
+                placeholder="Senha"
+                type="password"
+              />
             </Item>
 
             <Item style={{ marginTop: 10 }}>
               <Button type="primary" htmlType="submit" style={{ marginRight: 20 }}>
-                Entrar
+                Criar!
               </Button>
-              ou <Link to="register"> Registar agora!</Link>
+              <Link to="login">Voltar</Link>
             </Item>
-
-            <Link to="forgot">
-              Esqueci a senha
-            </Link>
-
           </Form>
 
         </Card>
@@ -81,4 +95,4 @@ const Login: React.FC = () => {
 
 }
 
-export default Login;
+export default Register;
