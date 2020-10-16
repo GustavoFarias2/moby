@@ -12,13 +12,19 @@ import {
   Checkbox,
   Button
 } from "antd";
-
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import {
+  UserOutlined,
+  LockOutlined
+} from "@ant-design/icons";
 
 const { Title } = Typography;
 const { Item } = Form;
 
-const Login: React.FC = () => {
+interface Login {
+  setIsLoged: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const Login: React.FC<Login> = ({ setIsLoged }) => {
 
   return (
     <Row align="middle" justify="center" style={{ height: "100%", backgroundColor: "Background" }}>
@@ -29,7 +35,9 @@ const Login: React.FC = () => {
           <Form
             name="login_form"
             initialValues={{ remember: true }}
-            onFinish={(v) => console.log(v)}
+            onFinish={() => {
+              setIsLoged(true);
+            }}
           >
 
             <Title level={3} style={{ marginTop: 20, marginBottom: 30 }}>

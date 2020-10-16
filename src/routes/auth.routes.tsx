@@ -9,14 +9,18 @@ import {
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
 
-const AuthRoutes: React.FC = () => {
+interface AuthRoutes {
+  setIsLoged: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const AuthRoutes: React.FC<AuthRoutes> = ({ setIsLoged }) => {
 
   return (
 
     <Switch>
 
       <Route path="/login">
-        <Login />
+        <Login setIsLoged={setIsLoged} />
       </Route>
 
       <Route path="/register">
