@@ -6,10 +6,13 @@ import {
   Redirect
 } from "react-router-dom";
 
-import { Layout } from "antd";
 import {
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
+  Layout,
+  Row,
+  Col,
+  Input
+} from "antd";
+import {
   DoubleLeftOutlined,
   DoubleRightOutlined
 } from "@ant-design/icons";
@@ -42,10 +45,20 @@ const AuthRoutes: React.FC = () => {
 
         <Header style={{ backgroundColor: "#f1f1f1" }}>
 
-          {createElement(collapseSidebar ? DoubleRightOutlined : DoubleLeftOutlined, {
-            style: { fontSize: 22, marginLeft: '-25px' },
-            onClick: () => setCollapseSidebar(!collapseSidebar)
-          })}
+          <Row align="middle">
+            <Col>
+              {createElement(collapseSidebar ? DoubleRightOutlined : DoubleLeftOutlined, {
+                style: { fontSize: 22, marginLeft: '-25px', marginRight: 10 },
+                onClick: () => setCollapseSidebar(!collapseSidebar)
+              })}
+            </Col>
+
+            <Col sm={20} md={6}>
+              <Input 
+                placeholder="Buscar"
+              />
+            </Col>
+          </Row>
 
         </Header>
 
